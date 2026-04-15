@@ -115,9 +115,9 @@ const competitors = [
 
 function SectionTitle({ icon: Icon, children }) {
   return (
-    <div className="flex items-center gap-2 mb-3">
-      <Icon className="w-5 h-5" />
-      <h2 className="text-xl font-semibold tracking-tight">{children}</h2>
+    <div className="flex items-center gap-2 mb-3 md:mb-4">
+      <Icon className="w-4 h-4 md:w-5 md:h-5 shrink-0" />
+      <h2 className="text-lg md:text-xl font-semibold tracking-tight leading-tight">{children}</h2>
     </div>
   );
 }
@@ -140,33 +140,35 @@ function Sticky({ title, text, tone = "yellow" }) {
 
 export default function FMLogisticResearchBoard() {
   return (
-    <div className="min-h-screen bg-[#f6f2e9] text-slate-900 p-6 md:p-10">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen bg-[#f6f2e9] text-slate-900 px-4 py-4 sm:px-6 md:p-10">
+      <div className="max-w-7xl mx-auto space-y-5 md:space-y-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="rounded-3xl border border-slate-300 bg-white/80 backdrop-blur p-6 md:p-8 shadow-sm"
+          className="rounded-3xl border border-slate-300 bg-white/80 backdrop-blur p-5 sm:p-6 md:p-8 shadow-sm"
         >
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <div className="text-sm uppercase tracking-[0.2em] text-slate-500 mb-2">Research board</div>
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight">FM Logistic — карта процесса, узких мест и направлений для кейса</h1>
-              <p className="mt-3 text-base text-slate-700 max-w-4xl leading-7">
+              <div className="text-[11px] sm:text-sm uppercase tracking-[0.18em] text-slate-500 mb-2">Research board</div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight">
+                FM Logistic — карта процесса, узких мест и направлений для кейса
+              </h1>
+              <p className="mt-3 text-sm sm:text-base text-slate-700 max-w-4xl leading-6 sm:leading-7">
                 Доска собрана по открытым источникам: как у FM выглядит путь груза от начала до конца, что уже внедрено,
                 где находятся основные издержки и какие направления оптимизации наиболее логичны.
               </p>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs sm:text-sm text-slate-700 md:max-w-xs">
               Формат: end-to-end flow + pain points + competitors + idea zones
             </div>
           </div>
         </motion.div>
 
-        <section className="rounded-3xl border border-slate-300 bg-white p-6 md:p-8 shadow-sm">
+        <section className="rounded-3xl border border-slate-300 bg-white p-4 sm:p-6 md:p-8 shadow-sm">
           <SectionTitle icon={MapPinned}>1. Путь груза от начала до конца</SectionTitle>
-          <div className="overflow-x-auto pb-2">
-            <div className="flex items-stretch gap-3 min-w-[2200px] pt-2">
+          <div className="overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+            <div className="flex items-stretch gap-3 min-w-max pt-2 pb-1 sm:pb-0">
               {flow.map((item, index) => {
                 const Icon = item.icon;
                 return (
@@ -175,15 +177,15 @@ export default function FMLogisticResearchBoard() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.03, duration: 0.25 }}
-                      className="w-[210px] shrink-0 rounded-3xl border border-slate-200 bg-slate-50 p-4 shadow-sm"
+                      className="w-[240px] sm:w-[220px] md:w-[210px] shrink-0 rounded-3xl border border-slate-200 bg-slate-50 p-4 shadow-sm"
                     >
                       <div className="flex items-center justify-between mb-3">
-                        <div className="w-10 h-10 rounded-2xl bg-white border border-slate-200 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-2xl bg-white border border-slate-200 flex items-center justify-center shrink-0">
                           <Icon className="w-5 h-5" />
                         </div>
-                        <span className="text-xs text-slate-500">этап</span>
+                        <span className="text-[11px] text-slate-500 uppercase tracking-wide">этап</span>
                       </div>
-                      <div className="font-semibold leading-6 mb-2">{item.title}</div>
+                      <div className="font-semibold leading-6 mb-2 text-sm sm:text-[15px]">{item.title}</div>
                       <div className="text-sm text-slate-700 leading-6 mb-3">{item.text}</div>
                       <div className="rounded-2xl border border-rose-200 bg-rose-50 p-3">
                         <div className="text-xs uppercase tracking-wide text-rose-600 mb-1">Узкое место</div>
@@ -192,7 +194,7 @@ export default function FMLogisticResearchBoard() {
                     </motion.div>
                     {index < flow.length - 1 && (
                       <div className="shrink-0 flex items-center justify-center px-1">
-                        <ArrowRight className="w-6 h-6 text-slate-400" />
+                        <ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-slate-400" />
                       </div>
                     )}
                   </React.Fragment>
@@ -202,8 +204,8 @@ export default function FMLogisticResearchBoard() {
           </div>
         </section>
 
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-          <section className="xl:col-span-1 rounded-3xl border border-slate-300 bg-white p-6 shadow-sm">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 md:gap-6">
+          <section className="xl:col-span-1 rounded-3xl border border-slate-300 bg-white p-4 sm:p-6 shadow-sm">
             <SectionTitle icon={CheckCircle2}>2. Что у FM уже есть</SectionTitle>
             <div className="space-y-3">
               {implemented.map((item) => (
@@ -214,7 +216,7 @@ export default function FMLogisticResearchBoard() {
             </div>
           </section>
 
-          <section className="xl:col-span-1 rounded-3xl border border-slate-300 bg-white p-6 shadow-sm">
+          <section className="xl:col-span-1 rounded-3xl border border-slate-300 bg-white p-4 sm:p-6 shadow-sm">
             <SectionTitle icon={AlertTriangle}>3. Где основные gaps</SectionTitle>
             <div className="grid grid-cols-1 gap-3">
               {gaps.map((item, i) => (
@@ -223,7 +225,7 @@ export default function FMLogisticResearchBoard() {
             </div>
           </section>
 
-          <section className="xl:col-span-1 rounded-3xl border border-slate-300 bg-white p-6 shadow-sm">
+          <section className="xl:col-span-1 rounded-3xl border border-slate-300 bg-white p-4 sm:p-6 shadow-sm">
             <SectionTitle icon={BarChart3}>4. Где искать эффект</SectionTitle>
             <div className="space-y-3">
               {ideas.map((item, i) => (
@@ -235,8 +237,8 @@ export default function FMLogisticResearchBoard() {
           </section>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <section className="rounded-3xl border border-slate-300 bg-white p-6 shadow-sm">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+          <section className="rounded-3xl border border-slate-300 bg-white p-4 sm:p-6 shadow-sm">
             <SectionTitle icon={Users}>5. Конкурентное поле</SectionTitle>
             <div className="grid gap-3">
               {competitors.map((item, i) => (
@@ -245,7 +247,7 @@ export default function FMLogisticResearchBoard() {
             </div>
           </section>
 
-          <section className="rounded-3xl border border-slate-300 bg-white p-6 shadow-sm">
+          <section className="rounded-3xl border border-slate-300 bg-white p-4 sm:p-6 shadow-sm">
             <SectionTitle icon={Store}>6. Как читать эту доску</SectionTitle>
             <div className="space-y-4 text-sm leading-7 text-slate-700">
               <p>
